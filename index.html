@@ -586,6 +586,91 @@
             font-weight: 300;
         }
 
+        /* 声音开关按钮 */
+        .sound-toggle {
+            position: absolute;
+            bottom: 48px;
+            right: 48px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            animation: fadeUp 1s ease-out 1.5s forwards;
+            padding: 0;
+            outline: none;
+        }
+
+        .sound-toggle:hover {
+            border-color: rgba(230,0,18,0.5);
+            background: rgba(230,0,18,0.15);
+            box-shadow: 0 0 24px rgba(230,0,18,0.2);
+            transform: scale(1.1);
+        }
+
+        .sound-toggle svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: rgba(255,255,255,0.6);
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.3s;
+        }
+
+        .sound-toggle:hover svg {
+            stroke: rgba(255,255,255,0.9);
+        }
+
+        .sound-toggle .icon-muted,
+        .sound-toggle .icon-unmuted {
+            position: absolute;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .sound-toggle .icon-unmuted {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .sound-toggle.unmuted .icon-muted {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .sound-toggle.unmuted .icon-unmuted {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .sound-toggle .sound-hint {
+            position: absolute;
+            right: 56px;
+            white-space: nowrap;
+            font-size: 0.62rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            opacity: 0;
+            transform: translateX(8px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .sound-toggle:hover .sound-hint {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         /* 响应式 */
         @media (max-width: 768px) {
             nav { padding: 24px 30px; }
@@ -597,6 +682,8 @@
             .gallery-tabs { gap: 28px; }
             .contact { padding: 80px 30px 60px; }
             .contact-grid { gap: 40px; flex-direction: column; }
+            .sound-toggle { bottom: 28px; right: 28px; width: 40px; height: 40px; }
+            .sound-toggle .sound-hint { display: none; }
             footer { padding: 30px; }
         }
     </style>
@@ -643,6 +730,21 @@
             <span>Scroll</span>
             <div class="line"></div>
         </div>
+
+        <!-- 声音开关 -->
+        <button class="sound-toggle" id="soundToggle" aria-label="切换声音">
+            <span class="sound-hint">开启声音</span>
+            <svg class="icon-muted" viewBox="0 0 24 24">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+            </svg>
+            <svg class="icon-unmuted" viewBox="0 0 24 24">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            </svg>
+        </button>
     </section>
 
     <!-- 作品展示 -->
@@ -827,6 +929,32 @@
                 }
                 document.removeEventListener('click', tryPlay);
             }, { once: true });
+        }
+
+        // 声音开关控制
+        const soundToggle = document.getElementById('soundToggle');
+        const soundHint = soundToggle.querySelector('.sound-hint');
+
+        if (soundToggle && bgVideo) {
+            soundToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isMuted = bgVideo.muted;
+                bgVideo.muted = !isMuted;
+
+                if (!isMuted) {
+                    // 正在静音
+                    soundToggle.classList.remove('unmuted');
+                    soundHint.textContent = '开启声音';
+                } else {
+                    // 正在开启声音
+                    soundToggle.classList.add('unmuted');
+                    soundHint.textContent = '静音';
+                    // 确保视频在播放
+                    if (bgVideo.paused) {
+                        bgVideo.play().catch(function(){});
+                    }
+                }
+            });
         }
 
         // 作品标签切换
