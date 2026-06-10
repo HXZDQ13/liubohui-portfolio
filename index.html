@@ -225,8 +225,6 @@
         /* 首屏 */
         .hero {
             min-height: 100vh;
-            display: block;
-            padding: 0;
             position: relative;
             z-index: 1;
             overflow: hidden;
@@ -374,13 +372,13 @@
             box-shadow: 0 0 20px rgba(230,0,18,0.15);
         }
 
-        /* View All 按钮居中 */
+        /* View All 按钮居中 - 在底部栏上方 */
         .hero-center-btn {
             position: absolute;
-            bottom: 48px;
+            bottom: 130px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 5;
+            z-index: 6;
             opacity: 0;
             animation: fadeUp 1s ease-out 1.4s forwards;
         }
@@ -393,8 +391,8 @@
             align-items: flex-end;
             gap: 6px;
             text-align: right;
-            flex: 0 0 auto;
-            max-width: 300px;
+            max-width: 220px;
+            flex-shrink: 0;
         }
 
         .hero-tagline-red {
@@ -701,8 +699,8 @@
         /* 声音开关按钮 */
         .sound-toggle {
             position: absolute;
-            bottom: 48px;
-            right: 48px;
+            bottom: 130px;
+            right: 60px;
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -788,16 +786,17 @@
             nav { padding: 24px 30px; }
             .nav-links { display: none; }
             .hero-name-en { left: 24px; top: 90px; font-size: clamp(2.2rem, 12vw, 4rem); }
-            .hero-bottom { left: 24px; right: 24px; bottom: 32px; }
-            .hero-center-btn { bottom: 32px; left: 50%; transform: translateX(-50%); }
-            .hero-tagline-red { font-size: clamp(0.8rem, 3vw, 1.2rem); }
+            .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: flex-start; gap: 16px; }
+            .hero-bottom-right { align-items: flex-start; }
+            .hero-center-btn { bottom: 140px; }
+            .hero-tagline-red { font-size: clamp(0.8rem, 3vw, 1.2rem); white-space: normal; }
             .gallery { padding: 80px 30px; }
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-item.wide { grid-column: span 1; aspect-ratio: 4 / 5; }
             .gallery-tabs { gap: 28px; }
             .contact { padding: 80px 30px 60px; }
             .contact-grid { gap: 40px; flex-direction: column; }
-            .sound-toggle { bottom: 28px; right: 28px; width: 40px; height: 40px; }
+            .sound-toggle { bottom: 200px; right: 24px; width: 40px; height: 40px; }
             .sound-toggle .sound-hint { display: none; }
             footer { padding: 30px; }
         }
