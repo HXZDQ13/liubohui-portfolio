@@ -38,7 +38,7 @@
 
         /* 中央弥散光晕 */
         .ambient-glow {
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -55%);
@@ -63,7 +63,7 @@
 
         /* 顶部高光条 */
         .top-glow {
-            position: fixed;
+            position: absolute;
             top: -120px;
             left: 50%;
             transform: translateX(-50%);
@@ -81,7 +81,7 @@
 
         /* 左侧红色弥散 */
         .side-glow-left {
-            position: fixed;
+            position: absolute;
             top: 40%;
             left: -150px;
             width: 500px;
@@ -98,7 +98,7 @@
 
         /* 右侧红色弥散 */
         .side-glow-right {
-            position: fixed;
+            position: absolute;
             top: 35%;
             right: -150px;
             width: 500px;
@@ -115,7 +115,7 @@
 
         /* 底部红色渐变光 */
         .bottom-glow {
-            position: fixed;
+            position: absolute;
             bottom: -200px;
             left: 50%;
             transform: translateX(-50%);
@@ -272,8 +272,7 @@
 
         /* 隐藏不需要的元素 */
         .hero-tag,
-        .hero-divider,
-        .hero-role {
+        .hero-divider {
             display: none;
         }
 
@@ -322,6 +321,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        /* 舞蹈摄影师 - 细体，在小辉下方 */
+        .hero-role {
+            position: absolute;
+            top: calc(120px + clamp(4.5rem, 13vw, 10rem) + clamp(2rem, 5vw, 4rem) + 28px);
+            left: 60px;
+            font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+            font-weight: 200;
+            letter-spacing: 0.35em;
+            line-height: 1;
+            margin: 0;
+            padding: 0;
+            color: rgba(255,255,255,0.5);
+            opacity: 0;
+            animation: fadeUp 1s ease-out 0.8s forwards;
+            z-index: 5;
         }
 
         /* 底部三栏信息栏 */
@@ -792,6 +808,7 @@
             .nav-links { display: none; }
             .hero-name-en { left: 24px; top: 90px; font-size: clamp(2.2rem, 12vw, 4rem); }
             .hero-name-cn { left: 24px; top: calc(90px + clamp(2.2rem, 12vw, 4rem) + 8px); font-size: clamp(1.2rem, 3vw, 2rem); }
+            .hero-role { left: 24px; top: calc(90px + clamp(2.2rem, 12vw, 4rem) + clamp(1.2rem, 3vw, 2rem) + 20px); font-size: 0.75rem; letter-spacing: 0.25em; }
             .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
             .hero-bottom-center { justify-content: flex-start; }
             .hero-bottom-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 12px; }
@@ -885,118 +902,53 @@
 
     <!-- 作品展示 -->
     <section class="gallery" id="gallery">
-        <div class="gallery-header">
-            <div class="gallery-label">Portfolio</div>
-            <h2>照片与影像</h2>
-        </div>
-
-        <div class="gallery-tabs">
-            <button class="gallery-tab active" data-tab="all">全部</button>
-            <button class="gallery-tab" data-tab="photo">照片</button>
-            <button class="gallery-tab" data-tab="video">视频</button>
-        </div>
-
         <div class="gallery-grid" id="galleryGrid">
             <!-- 照片 1 -->
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(160deg, rgba(114,14,30,0.4) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>照片占位 1</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(160deg, rgba(114,14,30,0.4) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>天鹅之梦</h4>
-                    <p>芭蕾舞团舞台纪实</p>
-                </div>
             </div>
 
             <!-- 视频 1 -->
             <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(200deg, rgba(230,0,18,0.2) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>视频占位 1</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(200deg, rgba(230,0,18,0.2) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="play-icon">▶</div>
-                <span class="item-badge">Video</span>
-                <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>面具之下</h4>
-                    <p>现代舞剧场影像</p>
-                </div>
             </div>
 
             <!-- 照片 2 -->
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(220deg, rgba(80,0,20,0.35) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>照片占位 2</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(220deg, rgba(80,0,20,0.35) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>焰</h4>
-                    <p>弗拉门戈独舞</p>
-                </div>
             </div>
 
             <!-- 照片 3 (宽图) -->
             <div class="gallery-item wide" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(140deg, rgba(114,14,30,0.3) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>照片占位 3</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(140deg, rgba(114,14,30,0.3) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>水形物语</h4>
-                    <p>水下舞蹈摄影</p>
-                </div>
             </div>
 
             <!-- 视频 2 (宽图) -->
             <div class="gallery-item wide video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(180deg, rgba(230,0,18,0.15) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>视频占位 2</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(180deg, rgba(230,0,18,0.15) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="play-icon">▶</div>
-                <span class="item-badge">Video</span>
-                <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>月下独舞</h4>
-                    <p>户外舞蹈影像纪录</p>
-                </div>
             </div>
 
             <!-- 照片 4 -->
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(190deg, rgba(114,14,30,0.25) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>照片占位 4</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(190deg, rgba(114,14,30,0.25) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>律动</h4>
-                    <p>街舞文化纪录</p>
-                </div>
             </div>
 
             <!-- 照片 5 -->
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(160deg, rgba(180,20,40,0.2) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>照片占位 5</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(160deg, rgba(180,20,40,0.2) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>破茧</h4>
-                    <p>当代舞肖像</p>
-                </div>
             </div>
 
             <!-- 视频 3 -->
             <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(210deg, rgba(230,0,18,0.18) 0%, rgba(0,0,0,0.9) 100%);">
-                    <span>视频占位 3</span>
-                </div>
+                <div class="item-bg" style="background: linear-gradient(210deg, rgba(230,0,18,0.18) 0%, rgba(0,0,0,0.9) 100%);"></div>
                 <div class="play-icon">▶</div>
-                <span class="item-badge">Video</span>
-                <div class="item-overlay"></div>
-                <div class="item-info">
-                    <h4>浮生若梦</h4>
-                    <p>舞蹈短片</p>
-                </div>
             </div>
         </div>
     </section>
