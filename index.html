@@ -46,9 +46,9 @@
             height: 900px;
             background: radial-gradient(
                 ellipse 70% 60% at 50% 45%,
-                rgba(230, 0, 18, 0.16) 0%,
-                rgba(200, 10, 20, 0.10) 20%,
-                rgba(114, 14, 30, 0.06) 40%,
+                rgba(230, 0, 18, 0.28) 0%,
+                rgba(200, 10, 20, 0.18) 20%,
+                rgba(114, 14, 30, 0.10) 40%,
                 transparent 70%
             );
             pointer-events: none;
@@ -71,8 +71,8 @@
             height: 400px;
             background: radial-gradient(
                 ellipse 80% 50% at 50% 0%,
-                rgba(230, 0, 18, 0.08) 0%,
-                rgba(160, 5, 15, 0.04) 40%,
+                rgba(230, 0, 18, 0.15) 0%,
+                rgba(160, 5, 15, 0.08) 40%,
                 transparent 70%
             );
             pointer-events: none;
@@ -88,8 +88,8 @@
             height: 600px;
             background: radial-gradient(
                 ellipse 60% 50% at 30% 50%,
-                rgba(180, 10, 20, 0.08) 0%,
-                rgba(114, 14, 30, 0.04) 40%,
+                rgba(180, 10, 20, 0.15) 0%,
+                rgba(114, 14, 30, 0.08) 40%,
                 transparent 70%
             );
             pointer-events: none;
@@ -105,8 +105,8 @@
             height: 600px;
             background: radial-gradient(
                 ellipse 60% 50% at 70% 50%,
-                rgba(200, 10, 20, 0.07) 0%,
-                rgba(114, 14, 30, 0.03) 40%,
+                rgba(200, 10, 20, 0.14) 0%,
+                rgba(114, 14, 30, 0.07) 40%,
                 transparent 70%
             );
             pointer-events: none;
@@ -123,7 +123,7 @@
             height: 500px;
             background: radial-gradient(
                 ellipse 70% 60% at 50% 80%,
-                rgba(180, 10, 20, 0.06) 0%,
+                rgba(180, 10, 20, 0.12) 0%,
                 transparent 65%
             );
             pointer-events: none;
@@ -240,7 +240,7 @@
             height: 100%;
             z-index: 0;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a0005 0%, #0a0000 30%, #000000 50%, #0d0002 70%, #1a0008 100%);
+            background: linear-gradient(135deg, #2a0010 0%, #150005 30%, #0a0000 50%, #180008 70%, #2a0012 100%);
         }
 
         .hero-video-wrap video {
@@ -272,7 +272,6 @@
 
         /* 隐藏不需要的元素 */
         .hero-tag,
-        .hero-name-cn,
         .hero-divider,
         .hero-role {
             display: none;
@@ -298,6 +297,27 @@
 
         .hero-name-en .char {
             display: inline-block;
+            background: linear-gradient(180deg, #ff2d2d 0%, #cc0a0a 60%, #8b0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 小辉 - 紧跟LIUBOHUI下方 */
+        .hero-name-cn {
+            position: absolute;
+            top: calc(120px + clamp(4.5rem, 13vw, 10rem) + 12px);
+            left: 60px;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            line-height: 1;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            animation: fadeUp 1s ease-out 0.6s forwards;
+            text-shadow: 0 4px 60px rgba(230,0,18,0.25), 0 0 120px rgba(230,0,18,0.1);
+            z-index: 5;
             background: linear-gradient(180deg, #ff2d2d 0%, #cc0a0a 60%, #8b0000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -771,6 +791,7 @@
             nav { padding: 24px 30px; }
             .nav-links { display: none; }
             .hero-name-en { left: 24px; top: 90px; font-size: clamp(2.2rem, 12vw, 4rem); }
+            .hero-name-cn { left: 24px; top: calc(90px + clamp(2.2rem, 12vw, 4rem) + 8px); font-size: clamp(1.2rem, 3vw, 2rem); }
             .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
             .hero-bottom-center { justify-content: flex-start; }
             .hero-bottom-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 12px; }
