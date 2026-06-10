@@ -270,15 +270,15 @@
             pointer-events: none;
         }
 
-        .hero > *:not(.hero-video-wrap) {
-            position: relative;
-            z-index: 3;
-        }
-
-        .hero-tag {
+        /* 隐藏不需要的元素 */
+        .hero-tag,
+        .hero-name-cn,
+        .hero-divider,
+        .hero-role {
             display: none;
         }
 
+        /* 名字 - 左上角 */
         .hero-name-en {
             position: absolute;
             top: 120px;
@@ -288,7 +288,8 @@
             letter-spacing: 0.12em;
             line-height: 1;
             text-transform: uppercase;
-            margin-bottom: 0;
+            margin: 0;
+            padding: 0;
             opacity: 0;
             animation: fadeUp 1s ease-out 0.4s forwards;
             text-shadow: 0 4px 60px rgba(230,0,18,0.25), 0 0 120px rgba(230,0,18,0.1);
@@ -303,13 +304,7 @@
             background-clip: text;
         }
 
-        .hero-name-cn { display: none; }
-
-        .hero-divider { display: none; }
-
-        .hero-role { display: none; }
-
-        /* 主页底部信息栏 */
+        /* 底部三栏信息栏 */
         .hero-bottom {
             position: absolute;
             bottom: 48px;
@@ -321,7 +316,6 @@
             z-index: 5;
             opacity: 0;
             animation: fadeUp 1s ease-out 1.2s forwards;
-            overflow: visible;
         }
 
         .hero-bottom-left {
@@ -372,26 +366,21 @@
             box-shadow: 0 0 20px rgba(230,0,18,0.15);
         }
 
-        /* View All 按钮居中 - 在底部栏上方 */
-        .hero-center-btn {
-            position: absolute;
-            bottom: 130px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 6;
-            opacity: 0;
-            animation: fadeUp 1s ease-out 1.4s forwards;
+        /* 中间栏 - View All 按钮 */
+        .hero-bottom-center {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            flex: 0 0 auto;
         }
 
-        .hero-bottom-center { display: none; }
-
+        /* 右侧栏 - 标语 + 声音按钮 */
         .hero-bottom-right {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 6px;
+            gap: 12px;
             text-align: right;
-            max-width: 220px;
             flex-shrink: 0;
         }
 
@@ -696,13 +685,10 @@
             font-weight: 300;
         }
 
-        /* 声音开关按钮 */
+        /* 声音开关按钮（内联在底部右侧栏） */
         .sound-toggle {
-            position: absolute;
-            bottom: 130px;
-            right: 60px;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             border: 1px solid rgba(255,255,255,0.12);
             background: rgba(0,0,0,0.35);
@@ -711,12 +697,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            opacity: 0;
-            animation: fadeUp 1s ease-out 1.5s forwards;
             padding: 0;
             outline: none;
+            position: relative;
+            flex-shrink: 0;
         }
 
         .sound-toggle:hover {
@@ -786,9 +771,9 @@
             nav { padding: 24px 30px; }
             .nav-links { display: none; }
             .hero-name-en { left: 24px; top: 90px; font-size: clamp(2.2rem, 12vw, 4rem); }
-            .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: flex-start; gap: 16px; }
-            .hero-bottom-right { align-items: flex-start; }
-            .hero-center-btn { bottom: 140px; }
+            .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
+            .hero-bottom-center { justify-content: flex-start; }
+            .hero-bottom-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 12px; }
             .hero-tagline-red { font-size: clamp(0.8rem, 3vw, 1.2rem); white-space: normal; }
             .gallery { padding: 80px 30px; }
             .gallery-grid { grid-template-columns: 1fr; }
@@ -796,7 +781,7 @@
             .gallery-tabs { gap: 28px; }
             .contact { padding: 80px 30px 60px; }
             .contact-grid { gap: 40px; flex-direction: column; }
-            .sound-toggle { bottom: 200px; right: 24px; width: 40px; height: 40px; }
+            .sound-toggle { width: 36px; height: 36px; }
             .sound-toggle .sound-hint { display: none; }
             footer { padding: 30px; }
         }
@@ -832,48 +817,49 @@
             <div class="hero-video-vignette"></div>
         </div>
 
+        <!-- 隐藏元素 -->
         <div class="hero-tag">Dance Photographer</div>
-        <h1 class="hero-name-en">
-            <span class="char">L</span><span class="char">I</span><span class="char">U</span><span class="char">B</span><span class="char">O</span><span class="char">H</span><span class="char">U</span><span class="char">I</span>
-        </h1>
         <div class="hero-name-cn">小辉</div>
         <div class="hero-divider"></div>
         <div class="hero-role">舞蹈摄影师</div>
 
-        <!-- 底部信息栏 -->
+        <!-- 名字 - 左上角 -->
+        <h1 class="hero-name-en">
+            <span class="char">L</span><span class="char">I</span><span class="char">U</span><span class="char">B</span><span class="char">O</span><span class="char">H</span><span class="char">U</span><span class="char">I</span>
+        </h1>
+
+        <!-- 底部三栏信息栏 -->
         <div class="hero-bottom">
             <div class="hero-bottom-left">
                 <div class="hero-stat-number">100+</div>
                 <div class="hero-stat-sub">project portfolio of creative works</div>
             </div>
+            <div class="hero-bottom-center">
+                <a class="hero-stat-btn" href="#gallery">View All →</a>
+            </div>
             <div class="hero-bottom-right">
-                <div class="hero-tagline-red">
-                    <span class="red">DANCE</span> <span class="white">IS</span><br>
-                    <span class="red">NOT</span> <span class="white">STILL</span>
+                <div>
+                    <div class="hero-tagline-red">
+                        <span class="red">DANCE</span> <span class="white">IS</span><br>
+                        <span class="red">NOT</span> <span class="white">STILL</span>
+                    </div>
+                    <div class="hero-tagline-sub">Photography in Motion</div>
                 </div>
-                <div class="hero-tagline-sub">Photography in Motion</div>
+                <button class="sound-toggle" id="soundToggle" aria-label="切换声音">
+                    <span class="sound-hint">开启声音</span>
+                    <svg class="icon-muted" viewBox="0 0 24 24">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                        <line x1="23" y1="9" x2="17" y2="15"/>
+                        <line x1="17" y1="9" x2="23" y2="15"/>
+                    </svg>
+                    <svg class="icon-unmuted" viewBox="0 0 24 24">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                </button>
             </div>
         </div>
-
-        <!-- View All 居中 -->
-        <div class="hero-center-btn">
-            <a class="hero-stat-btn" href="#gallery">View All →</a>
-        </div>
-
-        <!-- 声音开关 -->
-        <button class="sound-toggle" id="soundToggle" aria-label="切换声音">
-            <span class="sound-hint">开启声音</span>
-            <svg class="icon-muted" viewBox="0 0 24 24">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-                <line x1="23" y1="9" x2="17" y2="15"/>
-                <line x1="17" y1="9" x2="23" y2="15"/>
-            </svg>
-            <svg class="icon-unmuted" viewBox="0 0 24 24">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            </svg>
-        </button>
     </section>
 
     <!-- 作品展示 -->
