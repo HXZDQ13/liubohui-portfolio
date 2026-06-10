@@ -323,12 +323,14 @@
             z-index: 5;
             opacity: 0;
             animation: fadeUp 1s ease-out 1.2s forwards;
+            overflow: visible;
         }
 
         .hero-bottom-left {
             display: flex;
             flex-direction: column;
             gap: 8px;
+            flex: 0 0 auto;
         }
 
         .hero-stat-number {
@@ -350,7 +352,6 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 12px;
             padding: 8px 20px;
             border: 1px solid rgba(255,255,255,0.15);
             border-radius: 100px;
@@ -373,17 +374,18 @@
             box-shadow: 0 0 20px rgba(230,0,18,0.15);
         }
 
-        .hero-bottom-center {
-            text-align: center;
-            flex-shrink: 1;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+        /* View All 按钮居中 */
+        .hero-center-btn {
+            position: absolute;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            opacity: 0;
+            animation: fadeUp 1s ease-out 1.4s forwards;
         }
 
-        .hero-bottom-center p {
-            display: none;
-        }
+        .hero-bottom-center { display: none; }
 
         .hero-bottom-right {
             display: flex;
@@ -391,14 +393,17 @@
             align-items: flex-end;
             gap: 6px;
             text-align: right;
+            flex: 0 0 auto;
+            max-width: 300px;
         }
 
         .hero-tagline-red {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1rem, 2vw, 1.5rem);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             line-height: 1.2;
+            white-space: nowrap;
         }
 
         .hero-tagline-red .red {
@@ -782,10 +787,10 @@
         @media (max-width: 768px) {
             nav { padding: 24px 30px; }
             .nav-links { display: none; }
-            .hero-name-en { font-size: clamp(2.2rem, 12vw, 4rem); top: 30%; }
-            .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
-            .hero-bottom-left { align-items: center; }
-            .hero-bottom-right { align-items: center; }
+            .hero-name-en { left: 24px; top: 90px; font-size: clamp(2.2rem, 12vw, 4rem); }
+            .hero-bottom { left: 24px; right: 24px; bottom: 32px; }
+            .hero-center-btn { bottom: 32px; left: 50%; transform: translateX(-50%); }
+            .hero-tagline-red { font-size: clamp(0.8rem, 3vw, 1.2rem); }
             .gallery { padding: 80px 30px; }
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-item.wide { grid-column: span 1; aspect-ratio: 4 / 5; }
@@ -845,9 +850,6 @@
                 <div class="hero-stat-number">100+</div>
                 <div class="hero-stat-sub">project portfolio of creative works</div>
             </div>
-            <div class="hero-bottom-center">
-                <a class="hero-stat-btn" href="#gallery">View All →</a>
-            </div>
             <div class="hero-bottom-right">
                 <div class="hero-tagline-red">
                     <span class="red">DANCE</span> <span class="white">IS</span><br>
@@ -855,6 +857,11 @@
                 </div>
                 <div class="hero-tagline-sub">Photography in Motion</div>
             </div>
+        </div>
+
+        <!-- View All 居中 -->
+        <div class="hero-center-btn">
+            <a class="hero-stat-btn" href="#gallery">View All →</a>
         </div>
 
         <!-- 声音开关 -->
