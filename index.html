@@ -452,26 +452,85 @@
 
         /* 作品展示区域 */
         .gallery {
-            padding: 100px 60px 120px;
+            padding: 80px 48px 60px;
             position: relative;
             z-index: 1;
         }
 
-        .gallery-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+        /* 筛选标签 */
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 56px;
         }
 
+        .gallery-tab {
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.4s;
+            font-family: inherit;
+        }
+
+        .gallery-tab.active { color: var(--text); }
+
+        .gallery-tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--wine), var(--red));
+            box-shadow: 0 0 10px var(--glow);
+            transition: width 0.4s;
+        }
+
+        .gallery-tab.active::after,
+        .gallery-tab:hover::after { width: 100%; }
+
+        /* 网格 */
+        .gallery-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+        }
+
+        /* 分组标题 */
+        .gallery-section-title {
+            grid-column: 1 / -1;
+            font-size: 0.68rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--red);
+            font-weight: 500;
+            padding: 28px 4px 10px;
+            text-shadow: 0 0 18px rgba(230,0,18,0.18);
+            border-bottom: 1px solid rgba(230,0,18,0.1);
+            margin-bottom: 2px;
+        }
+
+        .gallery-section-title:first-child {
+            padding-top: 0;
+        }
+
+        /* 卡片 */
         .gallery-item {
             position: relative;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             aspect-ratio: 3 / 4;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
             border: 1px solid rgba(255,255,255,0.03);
         }
 
@@ -479,28 +538,24 @@
             width: 100%;
             height: 100%;
             position: relative;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .gallery-item:hover .item-bg {
-            transform: scale(1.04);
-        }
+        .gallery-item:hover .item-bg { transform: scale(1.04); }
 
         .gallery-item .item-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
+            background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5) 100%);
             opacity: 0;
-            transition: opacity 0.4s;
+            transition: opacity 0.35s;
         }
 
-        .gallery-item:hover .item-overlay {
-            opacity: 1;
-        }
+        .gallery-item:hover .item-overlay { opacity: 1; }
 
         .gallery-item:hover {
-            border-color: rgba(230,0,18,0.15);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(230,0,18,0.05);
+            border-color: rgba(230,0,18,0.12);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 20px rgba(230,0,18,0.04);
         }
 
         .video-item .play-icon {
@@ -508,29 +563,63 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 0.85rem;
             z-index: 2;
             backdrop-filter: blur(6px);
-            transition: all 0.4s;
+            transition: all 0.35s;
         }
 
         .video-item:hover .play-icon {
-            background: rgba(230,0,18,0.5);
-            border-color: rgba(230,0,18,0.4);
-            box-shadow: 0 0 24px rgba(230,0,18,0.25);
+            background: rgba(230,0,18,0.45);
+            border-color: rgba(230,0,18,0.35);
+            box-shadow: 0 0 20px rgba(230,0,18,0.2);
         }
 
-        /* 联系区域 */
+        /* 特别鸣谢 */
+        .special-thanks {
+            max-width: 1300px;
+            margin: 60px auto 0;
+            padding: 0 4px;
+        }
+
+        .special-thanks-title {
+            font-size: 0.68rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--red);
+            font-weight: 500;
+            padding-bottom: 10px;
+            text-shadow: 0 0 18px rgba(230,0,18,0.18);
+            border-bottom: 1px solid rgba(230,0,18,0.1);
+            margin-bottom: 16px;
+        }
+
+        .special-thanks-card {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.03);
+            background: linear-gradient(135deg, rgba(114,14,30,0.3) 0%, rgba(0,0,0,0.92) 50%, rgba(180,10,25,0.2) 100%);
+            transition: all 0.45s;
+        }
+
+        .special-thanks-card:hover {
+            border-color: rgba(230,0,18,0.12);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 20px rgba(230,0,18,0.04);
+        }
+
+        /* 合作方式 */
         .contact {
-            padding: 120px 60px 100px;
+            padding: 80px 48px 60px;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -538,20 +627,20 @@
 
         .contact-label {
             font-size: 0.68rem;
-            letter-spacing: 0.5em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--red);
-            margin-bottom: 48px;
+            margin-bottom: 36px;
             font-weight: 500;
-            text-shadow: 0 0 20px rgba(230,0,18,0.2);
+            text-shadow: 0 0 18px rgba(230,0,18,0.18);
         }
 
         .contact-grid {
             display: flex;
             justify-content: center;
-            gap: 80px;
+            gap: 60px;
             flex-wrap: wrap;
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -560,16 +649,17 @@
         }
 
         .contact-item .label {
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
+            font-size: 0.62rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             font-weight: 400;
         }
 
-        .contact-item a {
-            font-size: 1.1rem;
+        .contact-item a,
+        .contact-item span {
+            font-size: 1rem;
             font-weight: 300;
             color: var(--text);
             text-decoration: none;
@@ -582,19 +672,19 @@
 
         .contact-item a:hover {
             border-color: var(--red);
-            text-shadow: 0 0 40px rgba(230,0,18,0.2);
+            text-shadow: 0 0 30px rgba(230,0,18,0.2);
         }
 
         /* 页脚 */
         footer {
-            padding: 40px 60px;
+            padding: 32px 48px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
         footer p {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: var(--text-muted);
             letter-spacing: 0.2em;
             font-weight: 300;
@@ -724,13 +814,19 @@
             .bottom-glow { width: 600px; height: 300px; }
 
             /* Gallery */
-            .gallery { padding: 60px 16px; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .gallery { padding: 50px 16px; }
+            .gallery-tabs { gap: 28px; margin-bottom: 32px; }
+            .gallery-tab { font-size: 0.65rem; letter-spacing: 0.15em; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .gallery-section-title { font-size: 0.6rem; padding: 18px 4px 8px; letter-spacing: 0.2em; }
+            .special-thanks { margin-top: 32px; }
+            .special-thanks-card { aspect-ratio: 16 / 9; }
+            .special-thanks-title { font-size: 0.6rem; }
 
             /* 联系 */
-            .contact { padding: 60px 24px 50px; }
+            .contact { padding: 50px 24px 40px; }
             .contact-grid { gap: 30px; flex-direction: column; }
-            .contact-item a { font-size: 0.95rem; }
+            .contact-item a, .contact-item span { font-size: 0.9rem; }
 
             footer { padding: 24px; }
             footer p { font-size: 0.6rem; }
@@ -740,8 +836,8 @@
         @media (max-width: 380px) {
             .hero-name-en { font-size: 2.2rem; }
             .hero-stat-number { font-size: 1.8rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
             .gallery { padding: 40px 12px; }
-            .gallery-grid { grid-template-columns: 1fr; gap: 10px; }
         }
     </style>
 </head>
@@ -822,89 +918,173 @@
 
     <!-- 作品展示 -->
     <section class="gallery" id="gallery">
+        <div class="gallery-tabs">
+            <button class="gallery-tab active" data-tab="all">全部</button>
+            <button class="gallery-tab" data-tab="photo">照片</button>
+            <button class="gallery-tab" data-tab="video">视频</button>
+        </div>
+
         <div class="gallery-grid" id="galleryGrid">
-            <!-- Row 1 -->
+            <!-- ═══ 照片区域 ═══ -->
+
+            <!-- MV拍摄图 -->
+            <div class="gallery-section-title" data-section="photo">MV拍摄图</div>
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(150deg, rgba(120,10,25,0.45) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(155deg, rgba(120,10,25,0.42) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(170deg, rgba(200,15,30,0.3) 0%, rgba(0,0,0,0.92) 100%);"></div>
-                <div class="play-icon">▶</div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(170deg, rgba(140,12,28,0.38) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
             </div>
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(190deg, rgba(90,5,20,0.4) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(145deg, rgba(100,8,20,0.45) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(165deg, rgba(160,14,30,0.35) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(185deg, rgba(110,6,22,0.4) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
 
-            <!-- Row 2 -->
+            <!-- 活动比赛拍摄图 -->
+            <div class="gallery-section-title" data-section="photo">活动比赛拍摄图</div>
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(160deg, rgba(160,12,28,0.35) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(160deg, rgba(130,10,24,0.4) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(200deg, rgba(114,14,30,0.38) 0%, rgba(0,0,0,0.92) 100%);"></div>
-                <div class="item-overlay"></div>
-            </div>
-            <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(180deg, rgba(230,0,18,0.22) 0%, rgba(0,0,0,0.92) 100%);"></div>
-                <div class="play-icon">▶</div>
-            </div>
-
-            <!-- Row 3 -->
-            <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(210deg, rgba(180,10,25,0.28) 0%, rgba(0,0,0,0.92) 100%);"></div>
-                <div class="play-icon">▶</div>
-            </div>
-            <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(140deg, rgba(140,8,22,0.4) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(180deg, rgba(170,15,30,0.32) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(175deg, rgba(100,6,18,0.42) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(140deg, rgba(90,5,18,0.48) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(175deg, rgba(150,12,26,0.36) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(195deg, rgba(114,14,30,0.4) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
 
-            <!-- Row 4 -->
+            <!-- 其他作品 -->
+            <div class="gallery-section-title" data-section="photo">其他作品</div>
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(155deg, rgba(170,14,30,0.32) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(150deg, rgba(180,16,32,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(195deg, rgba(220,12,28,0.25) 0%, rgba(0,0,0,0.92) 100%);"></div>
-                <div class="play-icon">▶</div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(168deg, rgba(80,4,15,0.5) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
             </div>
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(165deg, rgba(80,4,15,0.45) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(190deg, rgba(120,8,22,0.38) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(142deg, rgba(200,18,35,0.25) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(178deg, rgba(100,6,20,0.42) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
 
-            <!-- Row 5 -->
-            <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(185deg, rgba(130,10,22,0.36) 0%, rgba(0,0,0,0.92) 100%);"></div>
-                <div class="item-overlay"></div>
-            </div>
-            <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(145deg, rgba(190,16,32,0.28) 0%, rgba(0,0,0,0.92) 100%);"></div>
-                <div class="item-overlay"></div>
+            <!-- ═══ 视频区域 ═══ -->
+
+            <!-- 百位舞者计划作品 -->
+            <div class="gallery-section-title" data-section="video">百位舞者计划作品</div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(158deg, rgba(200,15,30,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
             </div>
             <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(205deg, rgba(200,8,20,0.3) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(172deg, rgba(220,12,28,0.25) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(188deg, rgba(180,10,22,0.3) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(148deg, rgba(230,0,18,0.2) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(162deg, rgba(190,8,25,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+
+            <!-- 活动/赛事花絮混剪 -->
+            <div class="gallery-section-title" data-section="video">活动/赛事花絮混剪</div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(175deg, rgba(210,14,28,0.26) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(155deg, rgba(240,10,22,0.22) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(185deg, rgba(170,12,24,0.3) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(165deg, rgba(200,16,30,0.24) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(195deg, rgba(180,10,20,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+
+            <!-- 街舞MV作品 -->
+            <div class="gallery-section-title" data-section="video">街舞MV作品</div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(160deg, rgba(220,18,32,0.24) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(145deg, rgba(250,12,25,0.2) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(178deg, rgba(190,14,28,0.26) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(168deg, rgba(210,10,22,0.25) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(182deg, rgba(200,16,30,0.22) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <div class="play-icon">▶</div>
             </div>
         </div>
+
+        <!-- 特别鸣谢 -->
+        <div class="special-thanks">
+            <div class="special-thanks-title">特别鸣谢</div>
+            <div class="special-thanks-card"></div>
+        </div>
     </section>
 
-    <!-- 联系 -->
+    <!-- 合作方式 -->
     <section class="contact" id="contact">
-        <div class="contact-label">Contact</div>
+        <div class="contact-label">合作方式</div>
         <div class="contact-grid">
             <div class="contact-item">
-                <div class="label">Phone</div>
-                <a href="tel:18883671336">18883671336</a>
+                <div class="label">微信 WeChat</div>
+                <span>asdzxc_1319</span>
             </div>
             <div class="contact-item">
-                <div class="label">Email</div>
+                <div class="label">邮箱 Email</div>
                 <a href="mailto:3048179315@qq.com">3048179315@qq.com</a>
             </div>
         </div>
@@ -912,11 +1092,11 @@
 
     <!-- 页脚 -->
     <footer>
-        <p>LIUBOHUI · 小辉 · 舞蹈摄影师</p>
+        <p>小辉 · 舞蹈摄影师</p>
     </footer>
 
     <script>
-        // 声音开关控制（视频暂时移除，保留结构）
+        // 声音开关控制
         const soundToggle = document.getElementById('soundToggle');
         if (soundToggle) {
             soundToggle.addEventListener('click', function(e) {
@@ -930,6 +1110,50 @@
                 }
             });
         }
+
+        // 作品标签切换
+        const tabs = document.querySelectorAll('.gallery-tab');
+        const items = document.querySelectorAll('.gallery-item');
+        const titles = document.querySelectorAll('.gallery-section-title');
+        const specialThanks = document.querySelector('.special-thanks');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const category = tab.dataset.tab;
+
+                // 切换卡片
+                items.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = '';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(8px)';
+                        setTimeout(() => { item.style.display = 'none'; }, 350);
+                    }
+                });
+
+                // 切换分组标题
+                titles.forEach(title => {
+                    const sec = title.dataset.section;
+                    if (category === 'all' || sec === category) {
+                        title.style.display = '';
+                    } else {
+                        title.style.display = 'none';
+                    }
+                });
+
+                // 特别鸣谢只在全部或照片时显示
+                if (specialThanks) {
+                    specialThanks.style.display = (category === 'video') ? 'none' : '';
+                }
+            });
+        });
     </script>
 </body>
 </html>
