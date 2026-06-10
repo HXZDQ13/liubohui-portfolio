@@ -270,6 +270,27 @@
             pointer-events: none;
         }
 
+        .hero-sound-toggle {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .hero-sound-toggle:hover { background: rgba(0,0,0,0.7); }
+
         /* 隐藏不需要的元素 */
         .hero-tag,
         .hero-divider {
@@ -1001,11 +1022,12 @@
     <section class="hero" id="home">
         <!-- 背景视频 -->
         <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline preload="auto">
+            <video autoplay muted loop playsinline preload="auto" id="heroBgVideo">
                 <source src="images/bg-video.mp4" type="video/mp4">
             </video>
             <div class="hero-video-overlay"></div>
             <div class="hero-video-vignette"></div>
+            <button class="hero-sound-toggle" id="heroSoundToggle" onclick="toggleHeroSound()" title="开启/关闭声音">🔇</button>
         </div>
 
         <!-- 隐藏元素 -->
@@ -1529,6 +1551,20 @@
                 // 先静音其他视频
                 document.querySelectorAll('.card-video').forEach(v => { v.muted = true; });
                 document.querySelectorAll('.sound-toggle').forEach(b => { b.textContent = '🔇'; });
+                video.muted = false;
+                btn.textContent = '🔊';
+            } else {
+                video.muted = true;
+                btn.textContent = '🔇';
+            }
+        }
+
+        // 背景视频声音开关
+        function toggleHeroSound() {
+            const video = document.getElementById('heroBgVideo');
+            const btn = document.getElementById('heroSoundToggle');
+            if (!video) return;
+            if (video.muted) {
                 video.muted = false;
                 btn.textContent = '🔊';
             } else {
