@@ -502,8 +502,18 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(105, 1fr);
             gap: 20px;
+        }
+
+        .gallery-grid > .gallery-section-title {
+            grid-column: span 105;
+        }
+        .gallery-grid > .gallery-item:not(.video-item) {
+            grid-column: span 21;
+        }
+        .gallery-grid > .gallery-item.video-item {
+            grid-column: span 15;
         }
 
         /* 分组标题 */
@@ -567,6 +577,30 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
+        }
+
+        .sound-toggle {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s;
+        }
+        .sound-toggle:hover {
+            background: rgba(230,0,18,0.5);
+            border-color: rgba(230,0,18,0.4);
         }
 
         .video-item .play-icon {
@@ -928,6 +962,11 @@
             .gallery-tabs { gap: 32px; margin-bottom: 32px; }
             .gallery-tab { font-size: 1rem; letter-spacing: 0.15em; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .gallery-grid > .gallery-section-title,
+            .gallery-grid > .gallery-item,
+            .gallery-grid > .gallery-item.video-item {
+                grid-column: span 1;
+            }
             .gallery-section-title { font-size: 0.8rem; padding: 20px 4px 10px; letter-spacing: 0.2em; }
             .special-thanks { margin-top: 32px; }
             .special-thanks-card { aspect-ratio: 16 / 9; }
@@ -947,6 +986,11 @@
             .hero-name-en { font-size: 2.2rem; }
             .hero-stat-number { font-size: 1.8rem; }
             .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-grid > .gallery-section-title,
+            .gallery-grid > .gallery-item,
+            .gallery-grid > .gallery-item.video-item {
+                grid-column: span 1;
+            }
             .gallery { padding: 40px 12px; }
         }
     </style>
@@ -1174,65 +1218,101 @@
                 <div class="item-bg" style="background: linear-gradient(158deg, rgba(200,15,30,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <video class="card-video" src="images/videos/video-01.mp4" muted loop autoplay playsinline></video>
                 <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
             <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-02.mp4">
                 <div class="item-bg" style="background: linear-gradient(172deg, rgba(220,12,28,0.25) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <video class="card-video" src="images/videos/video-02.mp4" muted loop autoplay playsinline></video>
                 <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
             <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-03.mp4">
                 <div class="item-bg" style="background: linear-gradient(188deg, rgba(180,10,22,0.3) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <video class="card-video" src="images/videos/video-03.mp4" muted loop autoplay playsinline></video>
                 <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
             <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-04.mp4">
                 <div class="item-bg" style="background: linear-gradient(148deg, rgba(230,0,18,0.2) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <video class="card-video" src="images/videos/video-04.mp4" muted loop autoplay playsinline></video>
                 <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
             <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-05.mp4">
                 <div class="item-bg" style="background: linear-gradient(162deg, rgba(190,8,25,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <video class="card-video" src="images/videos/video-05.mp4" muted loop autoplay playsinline></video>
                 <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
             <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-06.mp4">
                 <div class="item-bg" style="background: linear-gradient(155deg, rgba(210,14,28,0.26) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <video class="card-video" src="images/videos/video-06.mp4" muted loop autoplay playsinline></video>
                 <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
             <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-07.mp4">
                 <div class="item-bg" style="background: linear-gradient(170deg, rgba(195,10,24,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
                 <video class="card-video" src="images/videos/video-07.mp4" muted loop autoplay playsinline></video>
                 <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
 
             <!-- 活动/赛事花絮混剪 -->
             <div class="gallery-section-title" data-section="video">活动/赛事花絮混剪</div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/event-01.mp4">
                 <div class="item-bg" style="background: linear-gradient(175deg, rgba(210,14,28,0.26) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/event-01.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/event-02.mp4">
                 <div class="item-bg" style="background: linear-gradient(155deg, rgba(240,10,22,0.22) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/event-02.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/event-03.mp4">
                 <div class="item-bg" style="background: linear-gradient(185deg, rgba(170,12,24,0.3) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/event-03.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/event-04.mp4">
                 <div class="item-bg" style="background: linear-gradient(165deg, rgba(200,16,30,0.24) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/event-04.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/event-05.mp4">
                 <div class="item-bg" style="background: linear-gradient(195deg, rgba(180,10,20,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/event-05.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/event-06.mp4">
+                <div class="item-bg" style="background: linear-gradient(172deg, rgba(195,14,28,0.26) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/event-06.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/event-07.mp4">
+                <div class="item-bg" style="background: linear-gradient(160deg, rgba(215,12,26,0.24) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/event-07.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <button class="sound-toggle" onclick="event.stopPropagation();toggleSound(this)">🔇</button>
                 <div class="play-icon">▶</div>
             </div>
 
@@ -1398,6 +1478,23 @@
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
             setTimeout(() => { lightboxImg.src = ''; }, 350);
+        }
+
+        // 视频声音开关
+        function toggleSound(btn) {
+            const card = btn.closest('.gallery-item');
+            const video = card.querySelector('.card-video');
+            if (!video) return;
+            if (video.muted) {
+                // 先静音其他视频
+                document.querySelectorAll('.card-video').forEach(v => { v.muted = true; });
+                document.querySelectorAll('.sound-toggle').forEach(b => { b.textContent = '🔇'; });
+                video.muted = false;
+                btn.textContent = '🔊';
+            } else {
+                video.muted = true;
+                btn.textContent = '🔇';
+            }
         }
 
         // 视频灯箱
