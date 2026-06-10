@@ -772,6 +772,92 @@
             transform: translateX(0);
         }
 
+        /* 灯箱 */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s, visibility 0.35s;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+            transform: scale(0.92);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(230,0,18,0.3);
+            color: #fff;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(230,0,18,0.3);
+            color: #fff;
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
         /* 响应式 */
         @media (max-width: 768px) {
             nav { padding: 20px 24px; }
@@ -1116,6 +1202,14 @@
         </div>
     </section>
 
+    <!-- 灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
     <!-- 合作方式 -->
     <section class="contact" id="contact">
         <div class="contact-label">合作方式</div>
@@ -1194,6 +1288,83 @@
                     specialThanks.style.display = (category === 'video') ? 'none' : '';
                 }
             });
+        });
+
+        // 灯箱功能
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentIndex = 0;
+
+        function getVisibleItems() {
+            return Array.from(document.querySelectorAll('.gallery-item')).filter(
+                item => item.style.display !== 'none'
+            );
+        }
+
+        function getImageUrl(item) {
+            const bg = item.querySelector('.item-bg');
+            if (!bg) return '';
+            const style = bg.getAttribute('style') || '';
+            const match = style.match(/url\(['"]?([^'")\s]+)['"]?\)/);
+            return match ? match[1] : '';
+        }
+
+        function openLightbox(index) {
+            const visible = getVisibleItems();
+            if (index < 0 || index >= visible.length) return;
+            currentIndex = index;
+            const url = getImageUrl(visible[index]);
+            if (!url) return;
+            lightboxImg.src = url;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => { lightboxImg.src = ''; }, 350);
+        }
+
+        // 点击卡片打开
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const url = getImageUrl(item);
+                if (!url) return;
+                const visible = getVisibleItems();
+                const idx = visible.indexOf(item);
+                if (idx >= 0) openLightbox(idx);
+            });
+        });
+
+        lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const visible = getVisibleItems();
+            currentIndex = (currentIndex - 1 + visible.length) % visible.length;
+            const url = getImageUrl(visible[currentIndex]);
+            if (url) lightboxImg.src = url;
+        });
+
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const visible = getVisibleItems();
+            currentIndex = (currentIndex + 1) % visible.length;
+            const url = getImageUrl(visible[currentIndex]);
+            if (url) lightboxImg.src = url;
+        });
+
+        // 键盘操作
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lightboxPrev.click();
+            if (e.key === 'ArrowRight') lightboxNext.click();
         });
     </script>
 </body>
