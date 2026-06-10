@@ -461,22 +461,23 @@
         .gallery-tabs {
             display: flex;
             justify-content: center;
-            gap: 48px;
+            gap: 64px;
             margin-bottom: 56px;
         }
 
         .gallery-tab {
-            font-size: 0.72rem;
+            font-size: 1.4rem;
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--text-muted);
             background: none;
             border: none;
             cursor: pointer;
-            padding: 8px 0;
+            padding: 12px 0;
             position: relative;
             transition: color 0.4s;
             font-family: inherit;
+            font-weight: 300;
         }
 
         .gallery-tab.active { color: var(--text); }
@@ -498,25 +499,25 @@
 
         /* 网格 */
         .gallery-grid {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 14px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
         /* 分组标题 */
         .gallery-section-title {
             grid-column: 1 / -1;
-            font-size: 0.68rem;
+            font-size: 1rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--red);
             font-weight: 500;
-            padding: 28px 4px 10px;
+            padding: 36px 4px 14px;
             text-shadow: 0 0 18px rgba(230,0,18,0.18);
             border-bottom: 1px solid rgba(230,0,18,0.1);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .gallery-section-title:first-child {
@@ -563,15 +564,15 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             background: rgba(0,0,0,0.35);
             border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
+            font-size: 1.1rem;
             z-index: 2;
             backdrop-filter: blur(6px);
             transition: all 0.35s;
@@ -815,10 +816,10 @@
 
             /* Gallery */
             .gallery { padding: 50px 16px; }
-            .gallery-tabs { gap: 28px; margin-bottom: 32px; }
-            .gallery-tab { font-size: 0.65rem; letter-spacing: 0.15em; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .gallery-section-title { font-size: 0.6rem; padding: 18px 4px 8px; letter-spacing: 0.2em; }
+            .gallery-tabs { gap: 32px; margin-bottom: 32px; }
+            .gallery-tab { font-size: 1rem; letter-spacing: 0.15em; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .gallery-section-title { font-size: 0.8rem; padding: 20px 4px 10px; letter-spacing: 0.2em; }
             .special-thanks { margin-top: 32px; }
             .special-thanks-card { aspect-ratio: 16 / 9; }
             .special-thanks-title { font-size: 0.6rem; }
