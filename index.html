@@ -283,16 +283,14 @@
 
         .hero-name-en {
             position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 120px;
+            left: 60px;
             font-size: clamp(3.5rem, 10vw, 8rem);
             font-weight: 900;
             letter-spacing: 0.12em;
             line-height: 1;
             text-transform: uppercase;
             margin-bottom: 0;
-            text-align: center;
             opacity: 0;
             animation: fadeUp 1s ease-out 0.4s forwards;
             text-shadow: 0 4px 60px rgba(230,0,18,0.25), 0 0 120px rgba(230,0,18,0.1);
@@ -377,16 +375,14 @@
 
         .hero-bottom-center {
             text-align: center;
-            max-width: 300px;
             flex-shrink: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
         }
 
         .hero-bottom-center p {
-            font-size: 1.15rem;
-            font-weight: 300;
-            color: var(--text-dim);
-            letter-spacing: 0.12em;
-            line-height: 1.8;
+            display: none;
         }
 
         .hero-bottom-right {
@@ -848,10 +844,9 @@
             <div class="hero-bottom-left">
                 <div class="hero-stat-number">100+</div>
                 <div class="hero-stat-sub">project portfolio of creative works</div>
-                <a class="hero-stat-btn" href="#gallery">View All →</a>
             </div>
             <div class="hero-bottom-center">
-                <p>用镜头捕捉<br>每一个舞动的瞬间</p>
+                <a class="hero-stat-btn" href="#gallery">View All →</a>
             </div>
             <div class="hero-bottom-right">
                 <div class="hero-tagline-red">
