@@ -559,6 +559,16 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 20px rgba(230,0,18,0.04);
         }
 
+        .card-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
         .video-item .play-icon {
             position: absolute;
             top: 50%;
@@ -858,6 +868,19 @@
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
 
+        /* 视频灯箱 */
+        .video-lightbox video {
+            max-width: 90vw;
+            max-height: 88vh;
+            border-radius: 4px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+            transform: scale(0.92);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .video-lightbox.active video {
+            transform: scale(1);
+        }
+
         /* 响应式 */
         @media (max-width: 768px) {
             nav { padding: 20px 24px; }
@@ -1147,24 +1170,46 @@
 
             <!-- 百位舞者计划作品 -->
             <div class="gallery-section-title" data-section="video">百位舞者计划作品</div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-01.mp4">
                 <div class="item-bg" style="background: linear-gradient(158deg, rgba(200,15,30,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/video-01.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-02.mp4">
                 <div class="item-bg" style="background: linear-gradient(172deg, rgba(220,12,28,0.25) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/video-02.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-03.mp4">
                 <div class="item-bg" style="background: linear-gradient(188deg, rgba(180,10,22,0.3) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/video-03.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-04.mp4">
                 <div class="item-bg" style="background: linear-gradient(148deg, rgba(230,0,18,0.2) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/video-04.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
                 <div class="play-icon">▶</div>
             </div>
-            <div class="gallery-item video-item" data-category="video">
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-05.mp4">
                 <div class="item-bg" style="background: linear-gradient(162deg, rgba(190,8,25,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/video-05.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-06.mp4">
+                <div class="item-bg" style="background: linear-gradient(155deg, rgba(210,14,28,0.26) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/video-06.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item video-item" data-category="video" data-video="images/videos/video-07.mp4">
+                <div class="item-bg" style="background: linear-gradient(170deg, rgba(195,10,24,0.28) 0%, rgba(0,0,0,0.93) 100%);"></div>
+                <video class="card-video" src="images/videos/video-07.mp4" muted loop autoplay playsinline></video>
+                <div class="item-overlay"></div>
                 <div class="play-icon">▶</div>
             </div>
 
@@ -1228,6 +1273,12 @@
         <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
         <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
         <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <!-- 视频灯箱 -->
+    <div class="lightbox video-lightbox" id="videoLightbox">
+        <button class="lightbox-close" id="videoLightboxClose">&times;</button>
+        <video id="videoLightboxPlayer" controls playsinline></video>
     </div>
 
     <!-- 合作方式 -->
@@ -1349,9 +1400,41 @@
             setTimeout(() => { lightboxImg.src = ''; }, 350);
         }
 
+        // 视频灯箱
+        const videoLightbox = document.getElementById('videoLightbox');
+        const videoPlayer = document.getElementById('videoLightboxPlayer');
+        const videoLightboxClose = document.getElementById('videoLightboxClose');
+
+        function openVideoLightbox(videoSrc) {
+            videoPlayer.src = videoSrc;
+            videoLightbox.classList.add('active');
+            videoPlayer.play();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoLightbox() {
+            videoLightbox.classList.remove('active');
+            videoPlayer.pause();
+            document.body.style.overflow = '';
+            setTimeout(() => { videoPlayer.src = ''; }, 350);
+        }
+
+        videoLightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeVideoLightbox(); });
+        videoLightbox.addEventListener('click', (e) => { if (e.target === videoLightbox) closeVideoLightbox(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoLightbox.classList.contains('active')) closeVideoLightbox();
+        });
+
         // 点击卡片打开
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('click', () => {
+                // 视频卡片 -> 视频灯箱
+                const videoSrc = item.getAttribute('data-video');
+                if (videoSrc) {
+                    openVideoLightbox(videoSrc);
+                    return;
+                }
+                // 图片卡片 -> 图片灯箱
                 const url = getImageUrl(item);
                 if (!url) return;
                 const visible = getVisibleItems();
