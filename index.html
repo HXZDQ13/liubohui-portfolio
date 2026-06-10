@@ -240,7 +240,7 @@
             height: 100%;
             z-index: 0;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a0005 0%, #000000 50%, #0d0002 100%);
+            background: linear-gradient(135deg, #1a0005 0%, #0a0000 30%, #000000 50%, #0d0002 70%, #1a0008 100%);
         }
 
         .hero-video-wrap video {
@@ -826,11 +826,8 @@
 
     <!-- 首屏 -->
     <section class="hero" id="home">
-        <!-- 背景视频 -->
+        <!-- 背景（视频暂时移除） -->
         <div class="hero-video-wrap">
-            <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="">
-                <source src="bg-video.mp4" type="video/mp4">
-            </video>
             <div class="hero-video-overlay"></div>
             <div class="hero-video-vignette"></div>
         </div>
@@ -1018,73 +1015,17 @@
     </footer>
 
     <script>
-        // 背景视频播放控制
-        const bgVideo = document.getElementById('bgVideo');
-        if (bgVideo) {
-            bgVideo.addEventListener('loadeddata', function() {
-                console.log('视频已加载，时长:', bgVideo.duration, '秒');
-            });
-            bgVideo.addEventListener('canplay', function() {
-                console.log('视频可以播放');
-            });
-            bgVideo.addEventListener('error', function(e) {
-                console.error('视频加载失败:', e);
-                // 如果视频加载失败，给视频容器一个明显的备用背景
-                const wrap = document.querySelector('.hero-video-wrap');
-                if (wrap) {
-                    wrap.style.background = 'linear-gradient(135deg, #720e1e 0%, #000000 50%, #e60012 100%)';
-                }
-            });
-
-            // 尝试播放
-            const playVideo = function() {
-                bgVideo.play().then(function() {
-                    console.log('视频播放成功');
-                }).catch(function(err) {
-                    console.warn('自动播放被阻止:', err.message);
-                });
-            };
-
-            // 页面加载完成后尝试播放
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-                setTimeout(playVideo, 100);
-            } else {
-                window.addEventListener('DOMContentLoaded', function() {
-                    setTimeout(playVideo, 100);
-                });
-            }
-
-            // 用户交互后备
-            document.addEventListener('click', function tryPlay() {
-                if (bgVideo.paused) {
-                    bgVideo.play().catch(function(){});
-                }
-                document.removeEventListener('click', tryPlay);
-            }, { once: true });
-        }
-
-        // 声音开关控制
+        // 声音开关控制（视频暂时移除，保留结构）
         const soundToggle = document.getElementById('soundToggle');
-        const soundHint = soundToggle.querySelector('.sound-hint');
-
-        if (soundToggle && bgVideo) {
+        if (soundToggle) {
             soundToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
-                const isMuted = bgVideo.muted;
-                bgVideo.muted = !isMuted;
-
-                if (!isMuted) {
-                    // 正在静音
-                    soundToggle.classList.remove('unmuted');
-                    soundHint.textContent = '开启声音';
+                soundToggle.classList.toggle('unmuted');
+                const hint = soundToggle.querySelector('.sound-hint');
+                if (soundToggle.classList.contains('unmuted')) {
+                    if (hint) hint.textContent = '静音';
                 } else {
-                    // 正在开启声音
-                    soundToggle.classList.add('unmuted');
-                    soundHint.textContent = '静音';
-                    // 确保视频在播放
-                    if (bgVideo.paused) {
-                        bgVideo.play().catch(function(){});
-                    }
+                    if (hint) hint.textContent = '开启声音';
                 }
             });
         }
