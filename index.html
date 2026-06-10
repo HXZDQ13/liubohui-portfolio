@@ -42,12 +42,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -55%);
-            width: 900px;
-            height: 700px;
+            width: 1100px;
+            height: 900px;
             background: radial-gradient(
                 ellipse 70% 60% at 50% 45%,
-                rgba(230, 0, 18, 0.08) 0%,
-                rgba(114, 14, 30, 0.04) 30%,
+                rgba(230, 0, 18, 0.16) 0%,
+                rgba(200, 10, 20, 0.10) 20%,
+                rgba(114, 14, 30, 0.06) 40%,
                 transparent 70%
             );
             pointer-events: none;
@@ -63,15 +64,67 @@
         /* 顶部高光条 */
         .top-glow {
             position: fixed;
-            top: -100px;
+            top: -120px;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
-            height: 300px;
+            width: 1000px;
+            height: 400px;
             background: radial-gradient(
                 ellipse 80% 50% at 50% 0%,
-                rgba(230, 0, 18, 0.03) 0%,
+                rgba(230, 0, 18, 0.08) 0%,
+                rgba(160, 5, 15, 0.04) 40%,
                 transparent 70%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 左侧红色弥散 */
+        .side-glow-left {
+            position: fixed;
+            top: 40%;
+            left: -150px;
+            width: 500px;
+            height: 600px;
+            background: radial-gradient(
+                ellipse 60% 50% at 30% 50%,
+                rgba(180, 10, 20, 0.08) 0%,
+                rgba(114, 14, 30, 0.04) 40%,
+                transparent 70%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 右侧红色弥散 */
+        .side-glow-right {
+            position: fixed;
+            top: 35%;
+            right: -150px;
+            width: 500px;
+            height: 600px;
+            background: radial-gradient(
+                ellipse 60% 50% at 70% 50%,
+                rgba(200, 10, 20, 0.07) 0%,
+                rgba(114, 14, 30, 0.03) 40%,
+                transparent 70%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 底部红色渐变光 */
+        .bottom-glow {
+            position: fixed;
+            bottom: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1200px;
+            height: 500px;
+            background: radial-gradient(
+                ellipse 70% 60% at 50% 80%,
+                rgba(180, 10, 20, 0.06) 0%,
+                transparent 65%
             );
             pointer-events: none;
             z-index: 0;
@@ -110,6 +163,18 @@
             letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--red);
+            border-radius: 4px;
+            display: inline-block;
+            box-shadow: 0 0 16px rgba(230,0,18,0.3);
         }
 
         .logo span {
@@ -229,20 +294,20 @@
         }
 
         .hero-name-en {
-            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-size: clamp(4rem, 12vw, 10rem);
             font-weight: 900;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             line-height: 1;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             opacity: 0;
             animation: fadeUp 1s ease-out 0.4s forwards;
-            text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+            text-shadow: 0 4px 60px rgba(230,0,18,0.25), 0 0 120px rgba(230,0,18,0.1);
         }
 
         .hero-name-en .char {
             display: inline-block;
-            background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.7) 100%);
+            background: linear-gradient(180deg, #ff2d2d 0%, #cc0a0a 60%, #8b0000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -278,36 +343,110 @@
             animation: fadeUp 1s ease-out 0.8s forwards;
         }
 
-        .hero-scroll {
+        /* 主页底部信息栏 */
+        .hero-bottom {
             position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 48px;
+            left: 60px;
+            right: 60px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 5;
             opacity: 0;
             animation: fadeUp 1s ease-out 1.2s forwards;
         }
 
-        .hero-scroll span {
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
+        .hero-bottom-left {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .hero-stat-number {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .hero-stat-sub {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-stat-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 8px 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 100px;
+            color: var(--text);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s;
+            width: fit-content;
+        }
+
+        .hero-stat-btn:hover {
+            border-color: var(--red);
+            background: rgba(230,0,18,0.1);
+            box-shadow: 0 0 20px rgba(230,0,18,0.15);
+        }
+
+        .hero-bottom-center {
+            text-align: center;
+            max-width: 360px;
+        }
+
+        .hero-bottom-center p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            line-height: 1.8;
+        }
+
+        .hero-bottom-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .hero-tagline-red {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            line-height: 1.2;
+        }
+
+        .hero-tagline-red .red {
+            color: var(--red);
+            text-shadow: 0 0 30px rgba(230,0,18,0.3);
+        }
+
+        .hero-tagline-red .white {
+            color: var(--text);
+        }
+
+        .hero-tagline-sub {
+            font-size: 0.7rem;
             color: var(--text-muted);
-        }
-
-        .hero-scroll .line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(180deg, var(--red), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-            50% { opacity: 1; transform: scaleY(1); }
+            letter-spacing: 0.1em;
+            font-weight: 300;
         }
 
         @keyframes fadeUp {
@@ -676,6 +815,9 @@
             nav { padding: 24px 30px; }
             .nav-links { display: none; }
             .hero-name-cn { letter-spacing: 0.4em; }
+            .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
+            .hero-bottom-left { align-items: center; }
+            .hero-bottom-right { align-items: center; }
             .gallery { padding: 80px 30px; }
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-item.wide { grid-column: span 1; aspect-ratio: 4 / 5; }
@@ -693,13 +835,16 @@
     <!-- 中央弥散光晕 -->
     <div class="ambient-glow"></div>
     <div class="top-glow"></div>
+    <div class="side-glow-left"></div>
+    <div class="side-glow-right"></div>
+    <div class="bottom-glow"></div>
 
     <!-- 噪点磨砂质感 -->
     <div class="noise-overlay"></div>
 
     <!-- 导航 -->
     <nav>
-        <div class="logo"><span>LIUBOHUI</span> Studio</div>
+        <div class="logo"><div class="logo-icon"></div><span>LIUBOHUI</span> Studio</div>
         <ul class="nav-links">
             <li><a href="#home">首页</a></li>
             <li><a href="#gallery">作品</a></li>
@@ -726,9 +871,23 @@
         <div class="hero-divider"></div>
         <div class="hero-role">舞蹈摄影师</div>
 
-        <div class="hero-scroll">
-            <span>Scroll</span>
-            <div class="line"></div>
+        <!-- 底部信息栏 -->
+        <div class="hero-bottom">
+            <div class="hero-bottom-left">
+                <div class="hero-stat-number">500+</div>
+                <div class="hero-stat-sub">project portfolio of creative works</div>
+                <a class="hero-stat-btn" href="#gallery">View All →</a>
+            </div>
+            <div class="hero-bottom-center">
+                <p>用镜头捕捉<br>每一个舞动的瞬间</p>
+            </div>
+            <div class="hero-bottom-right">
+                <div class="hero-tagline-red">
+                    <span class="red">DANCE</span> <span class="white">IS</span><br>
+                    <span class="red">NOT</span> <span class="white">STILL</span>
+                </div>
+                <div class="hero-tagline-sub">Photography in Motion</div>
+            </div>
         </div>
 
         <!-- 声音开关 -->
