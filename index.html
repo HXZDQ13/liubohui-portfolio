@@ -452,72 +452,9 @@
 
         /* 作品展示区域 */
         .gallery {
-            padding: 140px 60px;
+            padding: 100px 60px 120px;
             position: relative;
             z-index: 1;
-        }
-
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .gallery-label {
-            font-size: 0.68rem;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            color: var(--red);
-            margin-bottom: 24px;
-            font-weight: 500;
-            text-shadow: 0 0 20px rgba(230,0,18,0.2);
-        }
-
-        .gallery h2 {
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .gallery-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            margin-bottom: 60px;
-        }
-
-        .gallery-tab {
-            font-size: 0.72rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px 0;
-            position: relative;
-            transition: color 0.4s;
-            font-family: inherit;
-        }
-
-        .gallery-tab.active {
-            color: var(--text);
-        }
-
-        .gallery-tab::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, var(--wine), var(--red));
-            box-shadow: 0 0 10px var(--glow);
-            transition: width 0.4s;
-        }
-
-        .gallery-tab.active::after,
-        .gallery-tab:hover::after {
-            width: 100%;
         }
 
         .gallery-grid {
@@ -525,103 +462,45 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 16px;
         }
 
         .gallery-item {
             position: relative;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-            aspect-ratio: 4 / 5;
+            aspect-ratio: 3 / 4;
             cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(255,255,255,0.04);
-        }
-
-        .gallery-item.wide {
-            aspect-ratio: 16 / 10;
-            grid-column: span 2;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255,255,255,0.03);
         }
 
         .gallery-item .item-bg {
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
             position: relative;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .gallery-item:hover .item-bg {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         .gallery-item .item-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%);
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
             opacity: 0;
-            transition: opacity 0.5s;
+            transition: opacity 0.4s;
         }
 
         .gallery-item:hover .item-overlay {
             opacity: 1;
         }
 
-        .gallery-item .item-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 28px;
-            transform: translateY(16px);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .gallery-item:hover .item-info {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .item-info h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            letter-spacing: -0.01em;
-        }
-
-        .item-info p {
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            font-weight: 300;
-        }
-
-        .item-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            padding: 5px 12px;
-            border-radius: 100px;
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 500;
-            z-index: 2;
-            backdrop-filter: blur(8px);
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.08);
-            color: var(--text-dim);
-        }
-
         .gallery-item:hover {
-            border-color: rgba(230,0,18,0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(230,0,18,0.06);
+            border-color: rgba(230,0,18,0.15);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(230,0,18,0.05);
         }
 
         .video-item .play-icon {
@@ -629,24 +508,24 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 56px;
-            height: 56px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.12);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             z-index: 2;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(6px);
             transition: all 0.4s;
         }
 
         .video-item:hover .play-icon {
-            background: rgba(230,0,18,0.6);
+            background: rgba(230,0,18,0.5);
             border-color: rgba(230,0,18,0.4);
-            box-shadow: 0 0 30px rgba(230,0,18,0.3);
+            box-shadow: 0 0 24px rgba(230,0,18,0.25);
         }
 
         /* 联系区域 */
@@ -845,9 +724,8 @@
             .bottom-glow { width: 600px; height: 300px; }
 
             /* Gallery */
-            .gallery { padding: 60px 20px; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .gallery-item.wide { grid-column: span 2; aspect-ratio: 16 / 10; }
+            .gallery { padding: 60px 16px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 
             /* 联系 */
             .contact { padding: 60px 24px 50px; }
@@ -862,8 +740,8 @@
         @media (max-width: 380px) {
             .hero-name-en { font-size: 2.2rem; }
             .hero-stat-number { font-size: 1.8rem; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-item.wide { grid-column: span 1; aspect-ratio: 4 / 5; }
+            .gallery { padding: 40px 12px; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 10px; }
         }
     </style>
 </head>
@@ -945,51 +823,73 @@
     <!-- 作品展示 -->
     <section class="gallery" id="gallery">
         <div class="gallery-grid" id="galleryGrid">
-            <!-- 照片 1 -->
+            <!-- Row 1 -->
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(160deg, rgba(114,14,30,0.4) 0%, rgba(0,0,0,0.9) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(150deg, rgba(120,10,25,0.45) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(170deg, rgba(200,15,30,0.3) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(190deg, rgba(90,5,20,0.4) 0%, rgba(0,0,0,0.92) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
 
-            <!-- 视频 1 -->
+            <!-- Row 2 -->
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(160deg, rgba(160,12,28,0.35) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(200deg, rgba(114,14,30,0.38) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
             <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(200deg, rgba(230,0,18,0.2) 0%, rgba(0,0,0,0.9) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(180deg, rgba(230,0,18,0.22) 0%, rgba(0,0,0,0.92) 100%);"></div>
                 <div class="play-icon">▶</div>
             </div>
 
-            <!-- 照片 2 -->
-            <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(220deg, rgba(80,0,20,0.35) 0%, rgba(0,0,0,0.9) 100%);"></div>
-                <div class="item-overlay"></div>
-            </div>
-
-            <!-- 照片 3 (宽图) -->
-            <div class="gallery-item wide" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(140deg, rgba(114,14,30,0.3) 0%, rgba(0,0,0,0.9) 100%);"></div>
-                <div class="item-overlay"></div>
-            </div>
-
-            <!-- 视频 2 (宽图) -->
-            <div class="gallery-item wide video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(180deg, rgba(230,0,18,0.15) 0%, rgba(0,0,0,0.9) 100%);"></div>
+            <!-- Row 3 -->
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(210deg, rgba(180,10,25,0.28) 0%, rgba(0,0,0,0.92) 100%);"></div>
                 <div class="play-icon">▶</div>
             </div>
-
-            <!-- 照片 4 -->
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(190deg, rgba(114,14,30,0.25) 0%, rgba(0,0,0,0.9) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(140deg, rgba(140,8,22,0.4) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(175deg, rgba(100,6,18,0.42) 0%, rgba(0,0,0,0.92) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
 
-            <!-- 照片 5 -->
+            <!-- Row 4 -->
             <div class="gallery-item" data-category="photo">
-                <div class="item-bg" style="background: linear-gradient(160deg, rgba(180,20,40,0.2) 0%, rgba(0,0,0,0.9) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(155deg, rgba(170,14,30,0.32) 0%, rgba(0,0,0,0.92) 100%);"></div>
                 <div class="item-overlay"></div>
             </div>
-
-            <!-- 视频 3 -->
             <div class="gallery-item video-item" data-category="video">
-                <div class="item-bg" style="background: linear-gradient(210deg, rgba(230,0,18,0.18) 0%, rgba(0,0,0,0.9) 100%);"></div>
+                <div class="item-bg" style="background: linear-gradient(195deg, rgba(220,12,28,0.25) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(165deg, rgba(80,4,15,0.45) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(185deg, rgba(130,10,22,0.36) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item" data-category="photo">
+                <div class="item-bg" style="background: linear-gradient(145deg, rgba(190,16,32,0.28) 0%, rgba(0,0,0,0.92) 100%);"></div>
+                <div class="item-overlay"></div>
+            </div>
+            <div class="gallery-item video-item" data-category="video">
+                <div class="item-bg" style="background: linear-gradient(205deg, rgba(200,8,20,0.3) 0%, rgba(0,0,0,0.92) 100%);"></div>
                 <div class="play-icon">▶</div>
             </div>
         </div>
@@ -1030,34 +930,6 @@
                 }
             });
         }
-
-        // 作品标签切换
-        const tabs = document.querySelectorAll('.gallery-tab');
-        const items = document.querySelectorAll('.gallery-item');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                const category = tab.dataset.tab;
-                items.forEach(item => {
-                    if (category === 'all' || item.dataset.category === category) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 10);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(10px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 400);
-                    }
-                });
-            });
-        });
     </script>
 </body>
 </html>
