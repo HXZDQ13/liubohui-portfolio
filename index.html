@@ -283,14 +283,16 @@
 
         .hero-name-en {
             position: absolute;
-            top: 130px;
-            left: 60px;
-            font-size: clamp(3.5rem, 9vw, 7.5rem);
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(3.5rem, 10vw, 8rem);
             font-weight: 900;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             line-height: 1;
             text-transform: uppercase;
             margin-bottom: 0;
+            text-align: center;
             opacity: 0;
             animation: fadeUp 1s ease-out 0.4s forwards;
             text-shadow: 0 4px 60px rgba(230,0,18,0.25), 0 0 120px rgba(230,0,18,0.1);
@@ -315,12 +317,11 @@
         .hero-bottom {
             position: absolute;
             bottom: 48px;
-            left: auto;
+            left: 60px;
             right: 60px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: flex-end;
-            gap: 36px;
             z-index: 5;
             opacity: 0;
             animation: fadeUp 1s ease-out 1.2s forwards;
@@ -329,9 +330,7 @@
         .hero-bottom-left {
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
             gap: 8px;
-            text-align: right;
         }
 
         .hero-stat-number {
@@ -376,7 +375,19 @@
             box-shadow: 0 0 20px rgba(230,0,18,0.15);
         }
 
-        .hero-bottom-center { display: none; }
+        .hero-bottom-center {
+            text-align: center;
+            max-width: 300px;
+            flex-shrink: 1;
+        }
+
+        .hero-bottom-center p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 0.12em;
+            line-height: 1.8;
+        }
 
         .hero-bottom-right {
             display: flex;
@@ -775,8 +786,10 @@
         @media (max-width: 768px) {
             nav { padding: 24px 30px; }
             .nav-links { display: none; }
-            .hero-name-en { left: 24px; top: 100px; font-size: clamp(2.5rem, 12vw, 4rem); }
-            .hero-bottom { right: 24px; bottom: 100px; }
+            .hero-name-en { font-size: clamp(2.2rem, 12vw, 4rem); top: 30%; }
+            .hero-bottom { left: 24px; right: 24px; bottom: 32px; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
+            .hero-bottom-left { align-items: center; }
+            .hero-bottom-right { align-items: center; }
             .gallery { padding: 80px 30px; }
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-item.wide { grid-column: span 1; aspect-ratio: 4 / 5; }
@@ -836,6 +849,9 @@
                 <div class="hero-stat-number">100+</div>
                 <div class="hero-stat-sub">project portfolio of creative works</div>
                 <a class="hero-stat-btn" href="#gallery">View All →</a>
+            </div>
+            <div class="hero-bottom-center">
+                <p>用镜头捕捉<br>每一个舞动的瞬间</p>
             </div>
             <div class="hero-bottom-right">
                 <div class="hero-tagline-red">
