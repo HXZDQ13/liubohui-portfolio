@@ -673,9 +673,9 @@
         .contact-grid {
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 48px;
             flex-wrap: wrap;
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -708,6 +708,56 @@
         .contact-item a:hover {
             border-color: var(--red);
             text-shadow: 0 0 30px rgba(230,0,18,0.2);
+        }
+
+        .contact-qr-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .contact-qr-card {
+            text-align: center;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+            transition: all 0.4s;
+            width: 200px;
+        }
+
+        .contact-qr-card:hover {
+            border-color: rgba(230,0,18,0.15);
+            background: rgba(255,255,255,0.04);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .contact-qr-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-qr-card .qr-title {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .contact-qr-card .qr-id {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.05em;
         }
 
         /* 页脚 */
@@ -1412,6 +1462,22 @@
             <div class="contact-item">
                 <div class="label">邮箱 Email</div>
                 <a href="mailto:3048179315@qq.com">3048179315@qq.com</a>
+            </div>
+            <div class="contact-item">
+                <div class="label">抖音 Douyin</div>
+                <span>86775918744</span>
+            </div>
+        </div>
+        <div class="contact-qr-grid">
+            <div class="contact-qr-card">
+                <img src="images/other/wechat-qr.png" alt="微信二维码">
+                <div class="qr-title">微信</div>
+                <div class="qr-id">asdzxc_1319</div>
+            </div>
+            <div class="contact-qr-card">
+                <img src="images/other/douyin-qr.png" alt="抖音二维码">
+                <div class="qr-title">抖音</div>
+                <div class="qr-id">小辉的拍摄计划</div>
             </div>
         </div>
     </section>
